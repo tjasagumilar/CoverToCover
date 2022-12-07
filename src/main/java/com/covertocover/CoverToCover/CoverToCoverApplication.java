@@ -10,5 +10,4 @@ public class CoverToCoverApplication {
 		SpringApplication.run(CoverToCoverApplication.class, args);
 	}
 
-
 }
