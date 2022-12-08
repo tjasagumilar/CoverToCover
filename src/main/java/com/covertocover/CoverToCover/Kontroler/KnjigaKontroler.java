@@ -32,34 +32,37 @@ public class KnjigaKontroler {
     @PutMapping("{id}")
     public Knjiga spremeniKnjigo(@PathVariable(name="id") Long id, @RequestBody Knjiga knjiga) {
 
-        if(!knjigaDao.existsById(id))
+        if(!knjigaDao.existsById(id)) {
             return null;
-
-        knjiga.setId(id);
-        return knjigaDao.save(knjiga);
+        } else {
+            knjiga.setId(id);
+            return knjigaDao.save(knjiga);
+        }
     }
 
     @DeleteMapping("{id}")
-    public Boolean izbrisiKnjigo(@PathVariable(name="id") Long id) {
+    public Boolean odstraniKnjigo(@PathVariable(name="id") Long id) {
 
-        if(!knjigaDao.existsById(id))
+        if(!knjigaDao.existsById(id)) {
             return false;
-        knjigaDao.deleteById(id);
-        return true;
+        } else {
+            knjigaDao.deleteById(id);
+            return true;
+        }
     }
 
     @GetMapping("/zanr/{zanr}/stStrani/{stStrani}")
-    public Iterable<Knjiga> vrniIzbranoKnjigo(@PathVariable(name = "zanr") Zanr zanr, @PathVariable(name = "stStrani") int stStrani) {
-        return knjigaDao.vrniIzbranoKnjigo(zanr, stStrani);
+    public Iterable<Knjiga> vrniKnjigoZanra(@PathVariable(name = "zanr") Zanr zanr, @PathVariable(name = "stStrani") int stStrani) {
+        return knjigaDao.vrniKnjigoZanra(zanr, stStrani);
     }
 
-    @GetMapping("/zanr/{zanr}/stStrani/{stStrani}/ocena/{ocena}")
-    public Iterable<Knjiga> vrniKnjigoZanra(@PathVariable(name = "zanr") Zanr zanr, @PathVariable(name = "stStrani") int stStrani, @PathVariable(name = "ocena") int ocena) {
-        return knjigaDao.vrniKnjigoZanra(zanr, stStrani, ocena);
+    @GetMapping("/zanr/{zanr}/stStrani/{stStrani}/leto/{leto}")
+    public Iterable<Knjiga> vrniKnjigoLeta(@PathVariable(name = "zanr") Zanr zanr, @PathVariable(name = "stStrani") int stStrani, @PathVariable(name = "leto") int leto) {
+        return knjigaDao.vrniKnjigoLeta(zanr, stStrani, leto);
     }
 
     @GetMapping("/zanr/{zanr}/stStrani/{stStrani}/avtorId/{avtorId}")
-    public Iterable<Knjiga> vrniKnjigoAvtor(@PathVariable(name="zanr") Zanr zanr, @PathVariable(name="stStrani") int stStrani, @PathVariable(name = "avtorId") int avtorId) {
-        return knjigaDao.vrniKnjigoAvtor(zanr, stStrani, avtorId);
+    public Iterable<Knjiga> vrniKnjigoAvtorja(@PathVariable(name="zanr") Zanr zanr, @PathVariable(name="stStrani") int stStrani, @PathVariable(name = "avtorId") int avtorId) {
+        return knjigaDao.vrniKnjigoAvtorja(zanr, stStrani, avtorId);
     }
 }

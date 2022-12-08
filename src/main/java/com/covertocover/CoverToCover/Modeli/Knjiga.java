@@ -11,12 +11,16 @@ public class Knjiga {
     private Long id;
     private String naslov;
     private Avtor avtor;
+    private int letoIzdaje;
     private Zanr zanr;
     private int steviloStrani;
     private Ocena ocena;
-    public Zanr zanrKnjige;
     @ManyToMany
     public Vector<Avtor> avtorji = new Vector<Avtor>();
+
+    public Long getId() {
+        return id;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -38,12 +42,12 @@ public class Knjiga {
         this.avtor = avtor;
     }
 
-    public Zanr getZanr() {
-        return zanr;
+    public int getLetoIzdaje() {
+        return letoIzdaje;
     }
 
-    public void setZanr(Zanr zanr) {
-        this.zanr = zanr;
+    public void setLetoIzdaje(int letoIzdaje) {
+        this.letoIzdaje = letoIzdaje;
     }
 
     public int getSteviloStrani() {
@@ -62,12 +66,12 @@ public class Knjiga {
         this.ocena = ocena;
     }
 
-    public Zanr getZanrKnjige() {
-        return zanrKnjige;
+    public Zanr getZanr() {
+        return zanr;
     }
 
-    public void setZanrKnjige(Zanr zanrKnjige) {
-        this.zanrKnjige = zanrKnjige;
+    public void setZanr(Zanr zanr) {
+        this.zanr = zanr;
     }
 
     public Vector<Avtor> getAvtorji() {
