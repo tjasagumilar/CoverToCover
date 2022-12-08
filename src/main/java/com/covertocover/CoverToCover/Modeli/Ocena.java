@@ -3,7 +3,6 @@ package com.covertocover.CoverToCover.Modeli;
 import jakarta.persistence.*;
 import org.hibernate.annotations.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.CascadeType;
 
 @Entity
 public class Ocena {
@@ -12,7 +11,7 @@ public class Ocena {
     private Long id;
     private int ocena;
     private String komentar;
-    public Knjiga ima;
+    public Knjiga knjiga;
 
     @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "uporabnik.id") @OnDelete(action = OnDeleteAction.CASCADE) @JsonIgnore
     public Uporabnik uporabnik;
