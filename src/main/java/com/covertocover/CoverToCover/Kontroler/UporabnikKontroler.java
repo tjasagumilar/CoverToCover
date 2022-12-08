@@ -61,4 +61,6 @@ public class UporabnikKontroler {
         return uporabnikRep.vrniUporabnikeHorvate(geslo, email, priimek);
     }
 
+    //s
+
 }
