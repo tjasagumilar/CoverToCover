@@ -11,54 +11,54 @@ import java.util.Optional;
 @RequestMapping("/uporabnik")
 public class UporabnikKontroler {
     @Autowired
-    private UporabnikRepozitorij uporabnikDao;
+    private UporabnikRepozitorij uporabnikRep;
 
     @GetMapping("")
     public Iterable<Uporabnik> vrniVseUporabnike() {
-        return uporabnikDao.findAll();
+        return uporabnikRep.findAll();
     }
 
     @GetMapping("{id}")
-    public Optional<Uporabnik> vrniUporabnika(@PathVariable(name="id") Long id) {
-        return uporabnikDao.findById(id);
+    public Optional<Uporabnik> vrniEnegaUporabnika(@PathVariable(name="id") Long id) {
+        return uporabnikRep.findById(id);
     }
 
     @PostMapping("")
-    public Uporabnik dodajUporabnika(@RequestBody Uporabnik uporabnik)
-    {return uporabnikDao.save(uporabnik);}
+    public Uporabnik dodajaUporabnika(@RequestBody Uporabnik uporabnik)
+    {return uporabnikRep.save(uporabnik);}
 
     @PutMapping("{id}")
     public Uporabnik spremeniUporabnika(@PathVariable(name="id") Long id, @RequestBody Uporabnik uporabnik) {
 
-        if(!uporabnikDao.existsById(id))
+        if(!uporabnikRep.existsById(id))
             return null;
 
         uporabnik.setId(id);
-        return uporabnikDao.save(uporabnik);
+        return uporabnikRep.save(uporabnik);
     }
 
     @DeleteMapping("{id}")
-    public Boolean izbrisiUporabnika(@PathVariable(name="id") Long id) {
+    public Boolean brisiUporabnika(@PathVariable(name="id") Long id) {
 
-        if(!uporabnikDao.existsById(id))
+        if(!uporabnikRep.existsById(id))
             return false;
-        uporabnikDao.deleteById(id);
+        uporabnikRep.deleteById(id);
         return true;
     }
 
     @GetMapping("/ime/{ime}/priimek/{priimek}")
-    public Iterable<Uporabnik> vrniDolocenegaUporabnika(@PathVariable(name = "ime") String ime, @PathVariable(name = "priimek") String priimek) {
-        return uporabnikDao.vrniDolocenegaUporabnika(ime, priimek);
+    public Iterable<Uporabnik> vrniSpecificnegaUporabnika(@PathVariable(name = "ime") String ime, @PathVariable(name = "priimek") String priimek) {
+        return uporabnikRep.vrniSpecificnegaUporabnika(ime, priimek);
     }
 
-    @GetMapping("/ime/{ime}/uporabniskoIme/{uporabniskoIme}/priimek/{priimek}")
-    public Iterable<Uporabnik> vrniUporabniskiNiz(@PathVariable(name = "ime") String ime, @PathVariable(name = "uporabniskoIme") String uporabniskoIme, @PathVariable(name = "priimek") String priimek) {
-        return uporabnikDao.vrniUporabniskiNiz(ime, uporabniskoIme, priimek);
+    @GetMapping("/ime/{ime}/email/{email}/priimek/{priimek}")
+    public Iterable<Uporabnik> vrniUporabniskiNiz(@PathVariable(name = "ime") String ime, @PathVariable(name = "email") String email, @PathVariable(name = "priimek") String priimek) {
+        return uporabnikRep.vrniUporabniskiNiz(ime, email, priimek);
     }
 
-    @GetMapping("/geslo/{geslo}/uporabniskoIme/{uporabniskoIme}/priimek/{priimek}")
-    public Iterable<Uporabnik> vrniUporabnikeNovake(@PathVariable(name="geslo") String geslo, @PathVariable(name="uporabniskoIme") String uporabniskoIme, @PathVariable(name = "priimek") String priimek) {
-        return uporabnikDao.vrniUporabnikeNovake(geslo, uporabniskoIme, priimek);
+    @GetMapping("/geslo/{geslo}/email/{email}/priimek/{priimek}")
+    public Iterable<Uporabnik> vrniUporabnikeHorvate(@PathVariable(name="geslo") String geslo, @PathVariable(name="email") String email, @PathVariable(name = "priimek") String priimek) {
+        return uporabnikRep.vrniUporabnikeHorvate(geslo, email, priimek);
     }
 
 }

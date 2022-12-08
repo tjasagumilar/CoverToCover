@@ -13,12 +13,12 @@ import java.util.List;
 public interface UporabnikRepozitorij extends CrudRepository<Uporabnik, Long>{
 
     @Query(value="SELECT * FROM uporabnik u WHERE u.ime='janez' AND u.priimek='horvat' ", nativeQuery=true)
-    List<Uporabnik> vrniDolocenegaUporabnika(String ime, String priimek);
+    List<Uporabnik> vrniSpecificnegaUporabnika(String ime, String priimek);
 
-    @Query(value="SELECT * FROM uporabnik u WHERE u.ime='janez' AND u.uporabniskoIme LIKE %janezhorvat% AND u.priimek='horvat' ", nativeQuery=true)
-    List<Uporabnik> vrniUporabniskiNiz(String ime, String uporabniskoIme, String priimek);
+    @Query(value="SELECT * FROM uporabnik u WHERE u.ime='janez' AND u.email LIKE %janezhorvat% AND u.priimek='horvat' ", nativeQuery=true)
+    List<Uporabnik> vrniUporabniskiNiz(String ime, String email, String priimek);
 
-    @Query(value="SELECT * FROM uporabnik u WHERE u.geslo LIKE %horvat% OR u.uporabniskoIme LIKE %horvat% OR u.priimek = %horvat%", nativeQuery=true)
-    List<Uporabnik> vrniUporabnikeNovake(String geslo, String uporabniskoIme, String priimek);
+    @Query(value="SELECT * FROM uporabnik u WHERE u.geslo LIKE %horvat% OR u.email LIKE %horvat% OR u.priimek = %horvat%", nativeQuery=true)
+    List<Uporabnik> vrniUporabnikeHorvate(String geslo, String email, String priimek);
 
 }
