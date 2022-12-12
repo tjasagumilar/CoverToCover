@@ -1,5 +1,6 @@
 package com.covertocover.CoverToCover.Modeli;
 
+import java.util.Collection;
 import java.util.Vector;
 import java.util.ArrayList;
 import org.hibernate.annotations.*;
@@ -17,6 +18,18 @@ public class Uporabnik {
     private String priimek;
     private String email;
     private String geslo;
+
+    private boolean enabled;
+    private boolean tokenExpired;
+
+    @ManyToMany
+    @JoinTable(
+            name = "uporabniki_vloge",
+            joinColumns = @JoinColumn(
+                    name = "uporabnik_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
 
     public void dolociOsebniCilj(double aCas, int aSteviloKnjig) {
         throw new UnsupportedOperationException();
@@ -74,5 +87,27 @@ public class Uporabnik {
         this.priimek = priimek;
     }
 
+    public Collection<Role> getRoles() {
+        return roles;
+    }
 
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean isTokenExpired() {
+        return tokenExpired;
+    }
+
+    public void setTokenExpired(boolean tokenExpired) {
+        this.tokenExpired = tokenExpired;
+    }
 }
