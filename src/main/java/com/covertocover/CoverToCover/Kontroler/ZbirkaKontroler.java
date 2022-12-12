@@ -50,4 +50,15 @@ public class ZbirkaKontroler {
             return true;
         }
     }
+
+    @GetMapping("zbirke/{stevilo_knjig}")
+    public Iterable<Zbirka> vrniZbirkeKnjig(@PathVariable(name="stevilo_knjig") int stevilo_knjig) {
+        return zbirkaDao.vrniZbirkeKnjig(stevilo_knjig);
+    }
+
+    @GetMapping("zbirkaUporabnika/{uporabnik_id}")
+    public Iterable<Zbirka> vrniZbirkeUporabnika(@PathVariable(name="uporabnik_id") int uporabnik_id) {
+        return zbirkaDao.vrniZbirkeKnjig(uporabnik_id);
+    }
+
 }
