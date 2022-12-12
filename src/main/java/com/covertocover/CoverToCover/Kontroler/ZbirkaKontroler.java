@@ -39,4 +39,15 @@ public class ZbirkaKontroler {
             return zbirkaDao.save(zbirka);
         }
     }
+
+    @DeleteMapping("{id}")
+    public Boolean odstraniZbirko(@PathVariable(name="id") Long id) {
+
+        if(!zbirkaDao.existsById(id)) {
+            return false;
+        } else {
+            zbirkaDao.deleteById(id);
+            return true;
+        }
+    }
 }
