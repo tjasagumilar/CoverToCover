@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/uporabnik")
 public class UporabnikKontroler {
@@ -61,6 +65,27 @@ public class UporabnikKontroler {
         return uporabnikRep.vrniUporabnikeHorvate(geslo, email, priimek);
     }
 
-    //s
+    //registracija
+    @PostMapping("/registracija")
+    public boolean registracijaUporabnika(@RequestBody Uporabnik uporabnik){
+        List<Uporabnik> tempUporabnik = uporabnikRep.preveriObstojEmail(uporabnik.getEmail());
+        if(tempUporabnik.size() > 0){
+            return false;
+        }
+        uporabnikRep.save(uporabnik);
+        System.out.println("Registracija uspešna!");
+        return true;
+    }
+
+    //prijava
+    @PostMapping("/prijava/{email}/{geslo}")
+    public boolean vrniUporabnikaLogin(@PathVariable(name="geslo") String email, @PathVariable(name="geslo") String geslo) {
+        List<Uporabnik> uporabnikList = uporabnikRep.vrniUporabnikLogin(email, geslo);
+        if(uporabnikList.size() > 0){
+            System.out.println("Prijava uspešna!");
+            return true;
+        }
+        return false;
+    }
 
 }

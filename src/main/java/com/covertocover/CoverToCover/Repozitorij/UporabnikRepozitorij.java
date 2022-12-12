@@ -19,5 +19,13 @@ public interface UporabnikRepozitorij extends CrudRepository<Uporabnik, Long>{
     @Query(value="SELECT * FROM uporabnik u WHERE u.geslo LIKE %horvat% OR u.email LIKE %horvat% OR u.priimek = %horvat%", nativeQuery=true)
     List<Uporabnik> vrniUporabnikeHorvate(String geslo, String email, String priimek);
 
+    //registracija
+    @Query(value="SELECT * FROM uporabnik u WHERE u.email = ? ", nativeQuery=true)
+    List<Uporabnik> preveriObstojEmail(String email);
+
+    //prijava
+    @Query(value="SELECT * FROM uporabnik u WHERE u.geslo = ? AND u.email = ? LIMIT 1 ", nativeQuery=true)
+    List<Uporabnik> vrniUporabnikLogin(String geslo, String email);
+
 }
 
