@@ -1,7 +1,13 @@
 package com.covertocover.CoverToCover.Modeli;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import java.util.ArrayList;
 import java.util.Vector;
+
 
 @Entity
 public class Knjiga {
@@ -10,13 +16,13 @@ public class Knjiga {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String naslov;
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "avtor.id") @OnDelete(action = OnDeleteAction.CASCADE) @JsonIgnore
     private Avtor avtor;
     private int letoIzdaje;
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "zanr.id") @OnDelete(action = OnDeleteAction.CASCADE) @JsonIgnore
     private Zanr zanr;
     private int steviloStrani;
-    private Ocena ocena;
-    @ManyToMany
-    public Vector<Avtor> avtorji = new Vector<Avtor>();
+
 
     public Long getId() {
         return id;
@@ -34,36 +40,32 @@ public class Knjiga {
         this.naslov = naslov;
     }
 
-    public Avtor getAvtor() {
-        return avtor;
-    }
-
-    public void setAvtor(Avtor avtor) {
-        this.avtor = avtor;
-    }
 
     public int getLetoIzdaje() {
         return letoIzdaje;
     }
 
     public void setLetoIzdaje(int letoIzdaje) {
+
         this.letoIzdaje = letoIzdaje;
     }
 
     public int getSteviloStrani() {
+
         return steviloStrani;
     }
 
     public void setSteviloStrani(int steviloStrani) {
+
         this.steviloStrani = steviloStrani;
     }
 
-    public Ocena getOcena() {
-        return ocena;
+    public Avtor getAvtor() {
+        return avtor;
     }
 
-    public void setOcena(Ocena ocena) {
-        this.ocena = ocena;
+    public void setAvtor(Avtor avtor) {
+        this.avtor = avtor;
     }
 
     public Zanr getZanr() {
@@ -73,14 +75,5 @@ public class Knjiga {
     public void setZanr(Zanr zanr) {
         this.zanr = zanr;
     }
-
-    public Vector<Avtor> getAvtorji() {
-        return avtorji;
-    }
-
-    public void setAvtorji(Vector<Avtor> avtorji) {
-        this.avtorji = avtorji;
-    }
-
 }
 

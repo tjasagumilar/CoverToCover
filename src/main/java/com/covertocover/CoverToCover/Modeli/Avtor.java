@@ -1,20 +1,15 @@
 package com.covertocover.CoverToCover.Modeli;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-import java.util.Vector;
+import jakarta.persistence.*;
 
 @Entity
 public class Avtor {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String ime;
     private String priimek;
-    public Vector<Knjiga> knjige = new Vector<Knjiga>();
 
     public Long getId() {
         return id;
@@ -40,11 +35,5 @@ public class Avtor {
         this.priimek = priimek;
     }
 
-    public Vector<Knjiga> getKnjige() {
-        return knjige;
-    }
 
-    public void setKnjige(Vector<Knjiga> knjige) {
-        this.knjige = knjige;
-    }
 }

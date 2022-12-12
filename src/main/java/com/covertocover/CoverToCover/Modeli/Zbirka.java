@@ -1,23 +1,23 @@
 package com.covertocover.CoverToCover.Modeli;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.*;
-import org.hibernate.annotations.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.persistence.CascadeType;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import java.util.Vector;
 
 @Entity
 public class Zbirka {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String ime;
-    private Knjiga knjige;
-
+    @ManyToMany
+    public Vector<Knjiga> knjige = new Vector<Knjiga>();
     @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "uporabnik.id") @OnDelete(action = OnDeleteAction.CASCADE) @JsonIgnore
-    public Uporabnik uporabnik;
+    private Uporabnik uporabnik;
 
     public Long getId() {
         return id;
@@ -35,11 +35,19 @@ public class Zbirka {
         this.ime = ime;
     }
 
-    public Knjiga getKnjige() {
+    public Vector<Knjiga> getKnjige() {
         return knjige;
     }
 
-    public void setKnjige(Knjiga knjige) {
+    public void setKnjige(Vector<Knjiga> knjige) {
         this.knjige = knjige;
+    }
+
+    public Uporabnik getUporabnik() {
+        return uporabnik;
+    }
+
+    public void setUporabnik(Uporabnik uporabnik) {
+        this.uporabnik = uporabnik;
     }
 }

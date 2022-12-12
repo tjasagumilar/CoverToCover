@@ -1,6 +1,9 @@
 package com.covertocover.CoverToCover.Modeli;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Admin extends Uporabnik {
@@ -8,10 +11,6 @@ public class Admin extends Uporabnik {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String naziv;
-
-    public void vnosKnjig(Knjiga aKnjiga) {
-        throw new UnsupportedOperationException();
-    }
 
     @Override
     public Long getId() {
@@ -30,5 +29,9 @@ public class Admin extends Uporabnik {
     public void setNaziv(String naziv) {
         this.naziv = naziv;
     }
-}
 
+    public void vnosKnjig(Knjiga aKnjiga) {
+        throw new UnsupportedOperationException();
+    }
+
+}

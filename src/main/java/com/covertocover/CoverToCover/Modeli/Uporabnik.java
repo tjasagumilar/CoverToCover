@@ -18,15 +18,6 @@ public class Uporabnik {
     private String email;
     private String geslo;
 
-    @OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    public Vector<Zbirka> zbirke = new Vector<Zbirka>();
-
-    @OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    public Vector<OsebniCilj> osebniCilji = new Vector<OsebniCilj>();
-
-    @OneToMany(mappedBy = "", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    public Vector<Ocena> ocene = new Vector<Ocena>();
-
     public void dolociOsebniCilj(double aCas, int aSteviloKnjig) {
         throw new UnsupportedOperationException();
     }
@@ -82,4 +73,6 @@ public class Uporabnik {
     public void setPriimek(String priimek) {
         this.priimek = priimek;
     }
+
+
 }

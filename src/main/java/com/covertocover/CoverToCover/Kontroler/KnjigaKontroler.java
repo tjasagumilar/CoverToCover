@@ -1,7 +1,6 @@
 package com.covertocover.CoverToCover.Kontroler;
 
-import com.covertocover.CoverToCover.Modeli.Knjiga;
-import com.covertocover.CoverToCover.Modeli.Zanr;
+import com.covertocover.CoverToCover.Modeli.*;
 import com.covertocover.CoverToCover.Repozitorij.KnjigaRepozitorij;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +12,11 @@ public class KnjigaKontroler {
 
     @Autowired
     private KnjigaRepozitorij knjigaDao;
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello";
+    }
 
     @GetMapping("")
     public Iterable<Knjiga> vrniVseKnjige() {
