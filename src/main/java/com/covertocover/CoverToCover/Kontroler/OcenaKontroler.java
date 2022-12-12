@@ -29,4 +29,15 @@ public class OcenaKontroler {
     public Ocena dodajOceno(@RequestBody Ocena ocena) {
         return ocenaRep.save(ocena);
     }
+
+    @PutMapping("{id}")
+    public Ocena spremeniOceno(@PathVariable(name="id") Long id, @RequestBody Ocena ocena) {
+
+        if(!ocenaRep.existsById(id)) {
+            return null;
+        } else {
+            ocena.setId(id);
+            return ocenaRep.save(ocena);
+        }
+    }
 }
