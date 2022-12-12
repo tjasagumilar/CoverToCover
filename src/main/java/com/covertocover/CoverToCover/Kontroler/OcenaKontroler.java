@@ -40,4 +40,15 @@ public class OcenaKontroler {
             return ocenaRep.save(ocena);
         }
     }
+
+    @DeleteMapping("{id}")
+    public Boolean odstraniOceno(@PathVariable(name="id") Long id) {
+
+        if(!ocenaRep.existsById(id)) {
+            return false;
+        } else {
+            ocenaRep.deleteById(id);
+            return true;
+        }
+    }
 }
