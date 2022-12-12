@@ -55,18 +55,18 @@ public class KnjigaKontroler {
         }
     }
 
-    @GetMapping("/zanr/{zanr}/stStrani/{stStrani}")
-    public Iterable<Knjiga> vrniKnjigoZanra(@PathVariable(name = "zanr") Zanr zanr, @PathVariable(name = "stStrani") int stStrani) {
-        return knjigaDao.vrniKnjigoZanra(zanr, stStrani);
+    @GetMapping("stStrani/{stevilo_strani}/letoIzdaje/{leto_izdaje}")
+    public Iterable<Knjiga> vrniKnjigoZanra(@PathVariable(name = "stevilo_strani") int stevilo_strani, @PathVariable(name = "leto_izdaje") int leto_izdaje) {
+        return knjigaDao.vrniKnjigoZanra(stevilo_strani, leto_izdaje);
     }
 
-    @GetMapping("/zanr/{zanr}/stStrani/{stStrani}/leto/{leto}")
-    public Iterable<Knjiga> vrniKnjigoLeta(@PathVariable(name = "zanr") Zanr zanr, @PathVariable(name = "stStrani") int stStrani, @PathVariable(name = "leto") int leto) {
-        return knjigaDao.vrniKnjigoLeta(zanr, stStrani, leto);
+    @GetMapping("/zanr/{zanr_id}/stStrani/{stevilo_strani}/letoIzdaje/{leto_izdaje}")
+    public Iterable<Knjiga> vrniKnjigoLeta(@PathVariable(name = "zanr_id") int zanr_id, @PathVariable(name = "stevilo_strani") int stevilo_strani, @PathVariable(name = "leto_izdaje") int leto_izdaje) {
+        return knjigaDao.vrniKnjigoLeta(zanr_id, stevilo_strani, leto_izdaje);
     }
 
-    @GetMapping("/zanr/{zanr}/stStrani/{stStrani}/avtorId/{avtorId}")
-    public Iterable<Knjiga> vrniKnjigoAvtorja(@PathVariable(name="zanr") Zanr zanr, @PathVariable(name="stStrani") int stStrani, @PathVariable(name = "avtorId") int avtorId) {
-        return knjigaDao.vrniKnjigoAvtorja(zanr, stStrani, avtorId);
+    @GetMapping("/zanr/{zanr_id}/stStrani/{sttevilo_strani}/avtor/{avtor_id}")
+    public Iterable<Knjiga> vrniKnjigoAvtorja(@PathVariable(name="zanr_id") Zanr zanr_id, @PathVariable(name="stevilo_strani") int stevilo_strani, @PathVariable(name = "avtor_id") int avtor_id) {
+        return knjigaDao.vrniKnjigoAvtorja(zanr_id, stevilo_strani, avtor_id);
     }
 }
