@@ -51,4 +51,15 @@ public class OcenaKontroler {
             return true;
         }
     }
+
+    @GetMapping("ocena/{stevilo_ocen}")
+    public Iterable<Ocena> vrniOceneKnjige(@PathVariable(name="stevilo_ocen") int stevilo_ocen) {
+        return ocenaRep.vrniOceneKnjige(stevilo_ocen);
+    }
+
+    @GetMapping("ocene/{uporabnik_id}")
+    public Iterable<Ocena> vrniOceneUporbnika(@PathVariable(name="uporabnik_id") int uporabnik_id) {
+        return ocenaRep.vrniOceneUporbnika(uporabnik_id);
+    }
+
 }
