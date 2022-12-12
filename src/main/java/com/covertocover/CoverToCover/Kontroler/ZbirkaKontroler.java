@@ -28,4 +28,15 @@ public class ZbirkaKontroler {
     public Zbirka dodajZbirko(@RequestBody Zbirka zbirka) {
         return zbirkaDao.save(zbirka);
     }
+
+    @PutMapping("{id}")
+    public Zbirka spremeniZbirko(@PathVariable(name="id") Long id, @RequestBody Zbirka zbirka) {
+
+        if(!zbirkaDao.existsById(id)) {
+            return null;
+        } else {
+            zbirka.setId(id);
+            return zbirkaDao.save(zbirka);
+        }
+    }
 }
