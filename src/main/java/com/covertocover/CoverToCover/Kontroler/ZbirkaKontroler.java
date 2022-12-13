@@ -4,7 +4,6 @@ import com.covertocover.CoverToCover.Modeli.*;
 import com.covertocover.CoverToCover.Repozitorij.ZbirkaRepozitorij;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
 
 @RestController
@@ -58,7 +57,7 @@ public class ZbirkaKontroler {
 
     @GetMapping("zbirkaUporabnika/{uporabnik_id}")
     public Iterable<Zbirka> vrniZbirkeUporabnika(@PathVariable(name="uporabnik_id") int uporabnik_id) {
-        return zbirkaDao.vrniZbirkeKnjig(uporabnik_id);
+        return zbirkaDao.vrniZbirkeUporabnika(uporabnik_id);
     }
 
 }

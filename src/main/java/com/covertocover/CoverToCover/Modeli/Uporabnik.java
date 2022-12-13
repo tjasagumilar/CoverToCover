@@ -20,7 +20,7 @@ public class Uporabnik {
     private String geslo;
 
     private boolean enabled;
-    private boolean tokenExpired;
+    //private boolean tokenExpired;
 
     @ManyToMany
     @JoinTable(
@@ -102,7 +102,7 @@ public class Uporabnik {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-
+/*
     public boolean isTokenExpired() {
         return tokenExpired;
     }
@@ -110,4 +110,7 @@ public class Uporabnik {
     public void setTokenExpired(boolean tokenExpired) {
         this.tokenExpired = tokenExpired;
     }
+
+
+ */
 }

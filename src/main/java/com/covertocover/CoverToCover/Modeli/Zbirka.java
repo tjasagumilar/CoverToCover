@@ -4,8 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
-import java.util.Vector;
+import java.util.*;
 
 @Entity
 public class Zbirka {
@@ -14,9 +13,16 @@ public class Zbirka {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String ime;
-    @ManyToMany
-    public Vector<Knjiga> knjige = new Vector<Knjiga>();
-    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "uporabnik.id") @OnDelete(action = OnDeleteAction.CASCADE) @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "zbirka_knjige",
+            joinColumns = { @JoinColumn(name = "zbirka_id") },
+            inverseJoinColumns = { @JoinColumn(name = "knjiga_id") })
+    public List<Knjiga> knjige;
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "uporabnik_id") @OnDelete(action = OnDeleteAction.CASCADE) @JsonIgnore
     private Uporabnik uporabnik;
 
     public Long getId() {
@@ -35,7 +41,7 @@ public class Zbirka {
         this.ime = ime;
     }
 
-    public Vector<Knjiga> getKnjige() {
+    public List<Knjiga> getKnjige() {
         return knjige;
     }
 
@@ -50,4 +56,6 @@ public class Zbirka {
     public void setUporabnik(Uporabnik uporabnik) {
         this.uporabnik = uporabnik;
     }
+
+
 }

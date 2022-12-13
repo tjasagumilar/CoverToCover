@@ -5,9 +5,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.util.ArrayList;
-import java.util.Vector;
-
+import java.util.List;
 
 @Entity
 public class Knjiga {
@@ -22,6 +20,14 @@ public class Knjiga {
     @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "zanr.id") @OnDelete(action = OnDeleteAction.CASCADE) @JsonIgnore
     private Zanr zanr;
     private int steviloStrani;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JsonIgnore
+    public List<Zbirka> zbirke;
 
 
     public Long getId() {
